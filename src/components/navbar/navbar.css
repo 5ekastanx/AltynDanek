@@ -13,7 +13,7 @@
   background-color: white;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   box-shadow: var(--shadow);
 }
 
@@ -31,6 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .logo {
@@ -38,6 +39,7 @@
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  z-index: 1002;
 }
 
 .logo img {
@@ -59,7 +61,8 @@
 
 .nav {
   display: flex;
-  gap: 30px;
+  gap: 80px;
+  transition: var(--transition);
 }
 
 .nav_item {
@@ -99,6 +102,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  z-index: 1002;
 }
 
 .search_btn,
@@ -117,7 +121,8 @@
 }
 
 .search_btn:hover,
-.basket_btn:hover {
+.basket_btn:hover,
+.mobile_menu_btn:hover {
   background-color: var(--light-gray);
   color: var(--primary-color);
 }
@@ -146,90 +151,11 @@
   display: none;
 }
 
-/* Responsive Styles */
-@media (max-width: 992px) {
-  .nav {
-    gap: 20px;
-  }
-  
-  .logo-text {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    height: 70px;
-  }
-  
-  .nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    padding: 20px 0;
-    box-shadow: var(--shadow);
-    transform: translateY(-150%);
-    transition: var(--transition);
-    z-index: 99;
-  }
-  
-  .nav.active {
-    transform: translateY(0);
-  }
-  
-  .nav_item {
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-  }
-  
-  .nav_item::before {
-    display: none;
-  }
-  
-  .mobile_menu_btn {
-    display: flex;
-  }
-  
-  .logo-text {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    height: 60px;
-  }
-  
-  .logo img {
-    width: 40px;
-  }
-  
-  .nav {
-    top: 60px;
-  }
-  
-  .nav_icons {
-    gap: 15px;
-  }
-  
-  .search_btn,
-  .basket_btn {
-    padding: 6px;
-  }
-}
-/* Добавьте это к существующим стилям */
-
+/* Search styles */
 .search_container {
   position: relative;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
 }
 
 .search_form {
@@ -272,26 +198,103 @@
   padding: 5px;
 }
 
-/* Адаптивные стили */
+/* Mobile menu styles */
 @media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+    box-shadow: var(--shadow);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1001;
+  }
+  
+  .nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav_item {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .nav_item:last-child {
+    border-bottom: none;
+  }
+  
+  .nav_item::before {
+    display: none;
+  }
+  
+  .mobile_menu_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-text {
+    display: none;
+  }
+  
   .search_container.open .search_form {
     position: fixed;
-    top: 70px;
+    top: 80px;
     left: 0;
     width: 100%;
     padding: 0 20px;
     background: white;
-    z-index: 101;
+    z-index: 1001;
     box-sizing: border-box;
   }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .nav {
+    gap: 20px;
+  }
   
-  .search_input {
-    width: 100%;
-    margin: 10px 0;
+  .logo-text {
+    display: block;
   }
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    height: 60px;
+  }
+  
+  .logo img {
+    width: 40px;
+  }
+  
+  .nav {
+    top: 60px;
+  }
+  
+  .nav_icons {
+    gap: 15px;
+  }
+  
+  .search_btn,
+  .basket_btn,
+  .mobile_menu_btn {
+    padding: 6px;
+  }
+  
   .search_container.open .search_form {
     top: 60px;
   }

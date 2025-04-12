@@ -75,10 +75,11 @@ const Home = () => {
               <img src={header_shop} width={745} height={525} alt="header_shop" />
             </div>
             <div className="header_right">
-              <p>fresh-foryou: your own-shop online</p>
-              <p>for purchasing the freshest and highest</p>
-              <p>quality fruits and vegetables!</p>
-              <button className='header_btn'><span>See More</span></button>
+              <p>ваш собственный интернет-магазин</p>
+              <p>для покупки самого свежего и высокого</p>
+              <p>качества фрукты и овощи!</p>
+              <button className='header_btn'><span>
+              Посмотреть больше</span></button>
             </div>
           </div>
         </div>
@@ -112,7 +113,7 @@ const Home = () => {
                       <option>g</option>
                     </select>
                   </div>
-                  <button className="add_btn">Add to Banner</button>
+                  <button className="add_btn">Add to Cart</button>
                 </div>
               ))}
             </div>

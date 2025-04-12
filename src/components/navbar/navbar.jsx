@@ -1,38 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import altyn from '../../Accests/altyn.png'
-import './navbar.css'
+import altyn from '../../Accests/altyn.png';
+import './navbar.css';
 
 const Navbar = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen)
-  }
+    setIsSearchOpen(!isSearchOpen);
+    setIsMenuOpen(false); // Закрываем меню при открытии поиска
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    setIsSearchOpen(false); // Закрываем поиск при открытии меню
+  };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault()
-    // Здесь будет логика поиска
-    console.log('Searching for:', searchQuery)
-    setSearchQuery('')
-    setIsSearchOpen(false)
-  }
+    e.preventDefault();
+    console.log('Searching for:', searchQuery);
+    setSearchQuery('');
+    setIsSearchOpen(false);
+  };
 
   return (
     <header className='navbar'>
       <div className="container">
         <div className="navbar_content">
-
           <NavLink to="/" className="logo">
             <img src={altyn} width={104} height={97} alt="logo" />
-            <span className="logo-text">FreshMarket</span>
           </NavLink>
 
-          <nav className="nav">
-            <NavLink to="/" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`}>NEW</NavLink>
-            <NavLink to="/fruits" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`}>FRUITS</NavLink>
-            <NavLink to="/vegetables" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`}>VEGETABLES</NavLink>
+          <nav className={`nav ${isMenuOpen ? 'active' : ''}`}>
+            <NavLink to="/" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>
+              НОВЫЕ
+            </NavLink>
+            <NavLink to="/fruits" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>
+              ФРУКТЫ
+            </NavLink>
+            <NavLink to="/vegetables" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>
+            ОВОЩИ
+            </NavLink>
           </nav>
 
           <div className="nav_icons">
@@ -71,7 +81,11 @@ const Navbar = () => {
               <span className="basket_counter">0</span>
             </NavLink>
 
-            <button className="mobile_menu_btn" aria-label="Menu">
+            <button 
+              className="mobile_menu_btn" 
+              aria-label="Menu"
+              onClick={toggleMenu}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
                 <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
               </svg>
@@ -80,7 +94,7 @@ const Navbar = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
