@@ -29,11 +29,11 @@ const Footer = () => {
           <h3 className="section_title">Контакты</h3>
           <div className="contact_item">
             <FaPhoneAlt className="contact_icon" />
-            <a href="tel:+79999999999" className="contact_link">+996 (990) 86-76-06</a>
+            <a href="tel:+996990867606" className="contact_link">+996 (990) 86-76-06</a>
           </div>
           <div className="contact_item">
             <FaEnvelope className="contact_icon" />
-            <a href="mailto:hello@danek.com" className="contact_link">altyndanek@danek.com</a>
+            <a href="mailto:5ekastannasirov@gmail.com" className="contact_link">altyndanek@danek.com</a>
           </div>
           
           <div className="social_links">
