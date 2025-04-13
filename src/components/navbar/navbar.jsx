@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // Добавляем импорт useSelector
 import altyn from '../../Accests/altyn.png';
 import './navbar.css';
 
@@ -7,15 +8,21 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Получаем данные корзины из Redux store
+  const cartItems = useSelector((state) => state.cart.items);
+  
+  // Вычисляем общее количество товаров в корзине
+  const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
-    setIsMenuOpen(false); // Закрываем меню при открытии поиска
+    setIsMenuOpen(false);
   };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    setIsSearchOpen(false); // Закрываем поиск при открытии меню
+    setIsSearchOpen(false);
   };
 
   const handleSearchSubmit = (e) => {
@@ -41,7 +48,7 @@ const Navbar = () => {
               ФРУКТЫ
             </NavLink>
             <NavLink to="/vegetables" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>
-            ОВОЩИ
+              ОВОЩИ
             </NavLink>
           </nav>
 
@@ -78,7 +85,10 @@ const Navbar = () => {
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
                 <path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/>
               </svg>
-              <span className="basket_counter">0</span>
+              {/* Отображаем количество товаров, если их больше 0 */}
+              {cartItemsCount > 0 && (
+                <span className="basket_counter">{cartItemsCount}</span>
+              )}
             </NavLink>
 
             <button 

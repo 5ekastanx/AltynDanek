@@ -3,38 +3,51 @@ import header_shop from '../../Accests/headershop.png';
 import imagecard from '../../Accests/imagecard.png';
 import imagecard1 from '../../Accests/imagecard1.png';
 import imagecard2 from '../../Accests/imagecard2.png';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../store/cartSlice';
 import './home.css';
 
 const allSlides = [
   [
-    { id: 1, title: 'Tomato', img: imagecard1 },
-    { id: 2, title: 'Fennel', img: imagecard },
-    { id: 3, title: 'Spring Onion', img: imagecard2 },
-    { id: 4, title: 'Tomato', img: imagecard1 },
-    { id: 5, title: 'Fennel', img: imagecard },
-    { id: 6, title: 'Spring Onion', img: imagecard2 },
+    { id: 1, price: 120, title: 'Tomato', img: imagecard1 },
+    { id: 2, price: 120, title: 'Fennel', img: imagecard },
+    { id: 3, price: 120, title: 'Spring Onion', img: imagecard2 },
+    { id: 4, price: 120, title: 'Tomato', img: imagecard1 },
+    { id: 5, price: 120, title: 'Fennel', img: imagecard },
+    { id: 6, price: 120, title: 'Spring Onion', img: imagecard2 },
   ],
   [
-    { id: 7, title: 'Apple', img: imagecard },
-    { id: 8, title: 'Cucumber', img: imagecard2 },
-    { id: 9, title: 'Lettuce', img: imagecard1 },
-    { id: 10, title: 'Apple', img: imagecard },
-    { id: 11, title: 'Cucumber', img: imagecard2 },
-    { id: 12, title: 'Lettuce', img: imagecard1 },
+    { id: 7, price: 120, title: 'Apple', img: imagecard },
+    { id: 8, price: 120, title: 'Cucumber', img: imagecard2 },
+    { id: 9, price: 120, title: 'Lettuce', img: imagecard1 },
+    { id: 10, price: 120, title: 'Apple', img: imagecard },
+    { id: 11, price: 120, title: 'Cucumber', img: imagecard2 },
+    { id: 12, price: 120, title: 'Lettuce', img: imagecard1 },
   ],
   [
-    { id: 13, title: 'Orange', img: imagecard1 },
-    { id: 14, title: 'Carrot', img: imagecard2 },
-    { id: 15, title: 'Pepper', img: imagecard },
-    { id: 16, title: 'Orange', img: imagecard1 },
-    { id: 17, title: 'Carrot', img: imagecard2 },
-    { id: 18, title: 'Pepper', img: imagecard },
+    { id: 13, price: 120, title: 'Orange', img: imagecard1 },
+    { id: 14, price: 120, title: 'Carrot', img: imagecard2 },
+    { id: 15, price: 120, title: 'Pepper', img: imagecard },
+    { id: 16, price: 120, title: 'Orange', img: imagecard1 },
+    { id: 17, price: 120, title: 'Carrot', img: imagecard2 },
+    { id: 18, price: 120, title: 'Pepper', img: imagecard },
   ]
 ];
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [quantities, setQuantities] = useState({});
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item) => {
+    dispatch(addItem({
+      id: item.id,
+      name: item.title,
+      price: item.price,
+      quantity: quantities[item.id] || 1,
+      image: item.img
+    }));
+  };
 
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 1) % allSlides.length);
@@ -113,7 +126,7 @@ const Home = () => {
                       <option>g</option>
                     </select>
                   </div>
-                  <button className="add_btn">Add to Cart</button>
+                  <button className="add_btn" onClick={() => handleAddToCart(item)}>Add to Cart</button>
                 </div>
               ))}
             </div>

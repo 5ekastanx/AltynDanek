@@ -12,16 +12,18 @@ import ad6 from '../../Accests/ad6.jpg';
 import ad7 from '../../Accests/ad7.jpg';
 import vegetables2 from '../../Accests/vegetables2.jpg';
 import vegetables3 from '../../Accests/vegetables3.jpg';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../store/cartSlice';
 
 const items = [
-  { id: 1, title: 'Tomato', img: imagecard },
-  { id: 2, title: 'Fennel', img: imagecard1 },
-  { id: 3, title: 'Spring Onion', img: imagecard2 },
-  { id: 4, title: 'Apple', img: imagecard },
-  { id: 5, title: 'Cucumber', img: imagecard1 },
-  { id: 3, title: 'Spring Onion', img: imagecard2 },
-  { id: 2, title: 'Fennel', img: imagecard1 },
-  { id: 6, title: 'Lettuce', img: imagecard2 },
+  { id: 1, price: 120, title: 'Tomato', img: imagecard },
+  { id: 2, price: 120, title: 'Fennel', img: imagecard1 },
+  { id: 3, price: 120, title: 'Spring Onion', img: imagecard2 },
+  { id: 4, price: 120, title: 'Apple', img: imagecard },
+  { id: 5, price: 120, title: 'Cucumber', img: imagecard1 },
+  { id: 3, price: 120, title: 'Spring Onion', img: imagecard2 },
+  { id: 2, price: 120, title: 'Fennel', img: imagecard1 },
+  { id: 6, price: 120, title: 'Lettuce', img: imagecard2 },
 ];
 
 const images = [
@@ -38,6 +40,18 @@ const images = [
 
 const Vegetables = () => {
   const [current, setCurrent] = useState(0);
+    const dispatch = useDispatch();
+  
+    const handleAddToCart = (item) => {
+      dispatch(addItem({
+        id: item.id,
+        name: item.title,
+        price: item.price,
+        quantity: quantities[item.id] || 1,
+        image: item.img
+      }));
+    };
+  
 
   // Функция для получения текущих изображений для слайда
   const getCurrentImages = () => {
@@ -145,8 +159,8 @@ const Vegetables = () => {
               <option>lb</option>
             </select>
           </div>
-          <button className="add_btn2">
-            <span>Add to Cart</span>
+          <button onClick={() => handleAddToCart(item)} className="add_btn2">
+            <span >Add to Cart</span>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M6 15C6.55228 15 7 14.5523 7 14C7 13.4477 6.55228 13 6 13C5.44772 13 5 13.4477 5 14C5 14.5523 5.44772 15 6 15Z" fill="white"/>
               <path d="M14 15C14.5523 15 15 14.5523 15 14C15 13.4477 14.5523 13 14 13C13.4477 13 13 13.4477 13 14C13 14.5523 13.4477 15 14 15Z" fill="white"/>
