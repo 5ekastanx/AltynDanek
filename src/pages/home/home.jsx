@@ -79,6 +79,10 @@ const Home = () => {
     }));
   };
 
+    const handleClick = () => {
+    window.open('/vegatables'); 
+  };
+  
   return (
     <>
       <div className='home_header'>
@@ -91,7 +95,7 @@ const Home = () => {
               <p>ваш собственный интернет-магазин</p>
               <p>для покупки самого свежего и высокого</p>
               <p>качества фрукты и овощи!</p>
-              <button className='header_btn'><span>
+              <button onClick={handleClick} className='header_btn'><span>
               Посмотреть больше</span></button>
             </div>
           </div>
