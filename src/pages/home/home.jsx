@@ -80,7 +80,7 @@ const Home = () => {
   };
 
     const handleClick = () => {
-    window.open('/vegatables'); 
+    window.open('/vegetables'); 
   };
   
   return (
