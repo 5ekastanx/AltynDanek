@@ -58,7 +58,8 @@
     margin-top: 25px;
     border-radius: 50px;
     background: rgba(90, 210, 80, 1);
-    border: none
+    border: none;
+    cursor: pointer;
 }
 
 .header_btn span {  font-family: "Inter", sans-serif;
