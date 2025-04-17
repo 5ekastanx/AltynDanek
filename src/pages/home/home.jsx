@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import header_shop from '../../Accests/headershop.png';
 import imagecard from '../../Accests/imagecard.png';
 import imagecard1 from '../../Accests/imagecard1.png';
@@ -38,6 +38,8 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [quantities, setQuantities] = useState({});
   const dispatch = useDispatch();
+  const cardsRef = useRef(null);
+
 
   const handleAddToCart = (item) => {
     dispatch(addItem({
@@ -79,9 +81,11 @@ const Home = () => {
     }));
   };
 
-    const handleClick = () => {
-    window.open('/vegetables'); 
+
+  const handleClick = () => {
+    cardsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+  
   
   return (
     <>
@@ -102,7 +106,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="section_home">
+      <div className="section_home" ref={cardsRef}>
         <div className="container">
           <div className="slider_wrapper">
             <button className="nav_btn left" onClick={handlePrev}>‹</button>
@@ -114,6 +118,7 @@ const Home = () => {
                     <img src={item.img} alt={item.title} />
                   </div>
                   <p className="card_title">{item.title}</p>
+                  <p className="card_price">${item.price.toFixed(2)}</p>
                   <div className="card_controls">
                     <div className="input_with_buttons">
                       <button className="sum_btn minus" onClick={() => decrease(item.id)}>-</button>
