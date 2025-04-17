@@ -107,7 +107,6 @@
   font-weight: 700;
   color: #333;
   margin-bottom: 8px;
-  text-align: center;
 }
 
 .card_price3 {
@@ -115,7 +114,6 @@
   font-weight: 700;
   color: #ff7513;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .card_controls3 {
@@ -246,16 +244,15 @@
   }
   
   .card_grid3 {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
   
   .card_img3 {
     padding: 20px;
-    height: 180px;
   }
   
-  .card_img img {
+  .card_img3 img {
     max-width: 140px;
     height: 140px;
   }
@@ -270,17 +267,13 @@
     font-size: 2rem;
   }
   
-  .card_grid {
+  .card_grid3 {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
   }
   
-  .card_img3 {
-    height: 150px;
-  }
-  
   .card_img3 img {
-    max-width: 100px;
+    max-width: 150px;
     height: 100px;
   }
   
@@ -289,11 +282,11 @@
   }
   
   .card_title3 {
-    font-size: 1rem;
+    font-size: 16px;
   }
   
   .card_price3 {
-    font-size: 1.2rem;
+    font-size: 18px;
   }
   
   .add_btn3 {
@@ -303,7 +296,7 @@
 }
 
 @media (max-width: 400px) {
-  .card_grid {
+  .card_grid3 {
     grid-template-columns: 1fr;
   }
   
