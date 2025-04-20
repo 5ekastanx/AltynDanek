@@ -50,6 +50,9 @@ const Navbar = () => {
             <NavLink to="/vegetables" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>
               ОВОЩИ
             </NavLink>
+            <NavLink to="/driedfruits" className={({ isActive }) => `nav_item ${isActive ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>
+              сухо фрукты
+            </NavLink>
           </nav>
 
           <div className="nav_icons">

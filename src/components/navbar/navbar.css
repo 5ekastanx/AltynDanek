@@ -61,7 +61,7 @@
 
 .nav {
   display: flex;
-  gap: 80px;
+  gap: 50px;
   transition: var(--transition);
 }
 

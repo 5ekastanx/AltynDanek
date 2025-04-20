@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import header_shop from '../../Accests/headershop.png';
+import home1 from '../../Accests/home1.jpg';
+import home2 from '../../Accests/home2.jpg';
+import home3 from '../../Accests/home3.jpg';
 import imagecard from '../../Accests/imagecard.png';
 import imagecard1 from '../../Accests/imagecard1.png';
 import imagecard2 from '../../Accests/imagecard2.png';
@@ -89,22 +92,72 @@ const Home = () => {
   
   return (
     <>
-      <div className='home_header'>
-        <div className="container">
-          <div className="header_shop fade-in">
-            <div className="header_left">
-              <img src={header_shop} width={745} height={525} alt="header_shop" />
-            </div>
-            <div className="header_right">
-              <p>ваш собственный интернет-магазин</p>
-              <p>для покупки самого свежего и высокого</p>
-              <p>качества фрукты и овощи!</p>
-              <button onClick={handleClick} className='header_btn'><span>
-              Посмотреть больше</span></button>
-            </div>
+<div className='home_header'>
+  <div className="container">
+    <div className="header_content">
+      {/* Левая часть с текстом и элементами управления */}
+      <div className="header_text">
+        <h1 className="title">
+          <span className="title_part">Свежие</span>
+          <span className="title_part">Фрукты</span>
+          <span className="title_part">Овощи</span>
+          <span className="title_part highlight">Сухофрукты</span>
+        </h1>
+        
+        <p className="subtitle">Премиум качество продуктов прямо от производителей</p>
+        
+        <div className="features">
+          <div className="feature">
+            <div className="feature_icon">✓</div>
+            <span>Натуральные продукты без химии</span>
+          </div>
+          <div className="feature">
+            <div className="feature_icon">✓</div>
+            <span>Прямые поставки из садов</span>
+          </div>
+          <div className="feature">
+            <div className="feature_icon">✓</div>
+            <span>Экологичная упаковка</span>
+          </div>
+        </div>
+        
+        <div className="cta_buttons">
+          <button className="primary_btn" onClick={handleClick}>
+            <span>Выбрать продукты</span>
+          </button>
+          <button className="secondary_btn">
+            <span>Узнать о скидках</span>
+          </button>
+        </div>
+      </div>
+      
+      {/* Правая часть с изображениями */}
+      <div className="header_images">
+        <div className="main_image">
+          <img 
+            src={header_shop} 
+            alt="Фрукты, овощи и сухофрукты" 
+            className="fade-in"
+          />
+        </div>
+        <div className="image_badge">
+          <span>100% натурально</span>
+        </div>
+        <div className="products_preview">
+          <div className="preview_item">
+            <img src={home1} alt="Фрукты" />
+          </div>
+          <div className="preview_item">
+            <img src={home2} alt="Овощи" />
+          </div>
+          <div className="preview_item">
+            <img src={home3} alt="Сухофрукты" />
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
       <div className="section_home" ref={cardsRef}>
         <div className="container">
