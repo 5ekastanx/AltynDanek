@@ -4,6 +4,7 @@ import home2 from '../../Accests/home2.jpg';
 import home3 from '../../Accests/home3.jpg';
 import home4 from '../../Accests/home4.jpeg';
 import home5 from '../../Accests/home5.png';
+import header_shop from '../../Accests/headershop.png';
 import imagecard from '../../Accests/imagecard.png';
 import fruit3 from '../../Accests/fruit3.png';
 import imagecard1 from '../../Accests/imagecard1.png';
@@ -137,7 +138,7 @@ const Home = () => {
       <div className="header_images">
         <div className="main_image">
           <img 
-            src={home3} 
+            src={header_shop} 
             alt="Фрукты, овощи и сухофрукты" 
             className="fade-in"
           />

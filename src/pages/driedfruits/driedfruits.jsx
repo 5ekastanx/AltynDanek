@@ -85,12 +85,11 @@ const DryFruits = () => {
   };
 
   const handleAddToCart = (fruit) => {
-    const quantityInKg = units[fruit.id] === 'кг' ? quantities[fruit.id] : quantities[fruit.id] / 1000;
     dispatch(addItem({
       id: fruit.id,
       name: fruit.name,
       price: fruit.price,
-      quantity: quantityInKg,
+      quantity: quantities[fruit.id] || 1,
       image: fruit.image
     }));
   };
