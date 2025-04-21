@@ -12,12 +12,12 @@ import './home.css';
 
 const allSlides = [
   [
-    { id: 1, price: 120, title: 'Tomato', img: imagecard1 },
-    { id: 2, price: 120, title: 'Fennel', img: imagecard },
-    { id: 3, price: 120, title: 'Spring Onion', img: imagecard2 },
-    { id: 4, price: 120, title: 'Tomato', img: imagecard1 },
-    { id: 5, price: 120, title: 'Fennel', img: imagecard },
-    { id: 6, price: 120, title: 'Spring Onion', img: imagecard2 },
+    { id: 1, price: 1.29, title: 'Tomato', img: imagecard1 },
+    { id: 2, price: 2.49, title: 'Fennel', img: imagecard },
+    { id: 3, price: 3.29, title: 'Spring Onion', img: imagecard2 },
+    { id: 4, price: 1.99, title: 'Tomato', img: imagecard1 },
+    { id: 5, price: 4.39, title: 'Fennel', img: imagecard },
+    { id: 6, price: 2.20, title: 'Spring Onion', img: imagecard2 },
   ],
   [
     { id: 7, price: 120, title: 'Apple', img: imagecard },
@@ -189,6 +189,7 @@ const Home = () => {
                     </select>
                   </div>
                   <button className="add_btn" onClick={() => handleAddToCart(item)}>Add to Cart</button>
+                  
                 </div>
               ))}
             </div>

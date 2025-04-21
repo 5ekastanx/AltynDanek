@@ -8,14 +8,14 @@ import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/cartSlice';
 
 const items = [
-  { id: 1, price: 120, title: 'Tomato', img: fruit1, price: 2.99 },
-  { id: 2, price: 120, title: 'Fennel', img: fruit2, price: 3.49 },
-  { id: 3, price: 120, title: 'Spring Onion', img: fruit3, price: 1.99 },
-  { id: 4, price: 120, title: 'Apple', img: fruit1, price: 1.49 },
-  { id: 5, price: 120, title: 'Cucumber', img: fruit2, price: 0.99 },
-  { id: 6, price: 120, title: 'Lettuce', img: fruit3, price: 2.29 },
-  { id: 7, price: 120, title: 'Carrot', img: fruit1, price: 1.79 },
-  { id: 8, price: 120, title: 'Bell Pepper', img: fruit2, price: 2.99 },
+  { id: 1, title: 'Tomato', img: fruit1, price: 2.99 },
+  { id: 2, title: 'Fennel', img: fruit2, price: 3.49 },
+  { id: 3, title: 'Spring Onion', img: fruit3, price: 1.99 },
+  { id: 4, title: 'Apple', img: fruit1, price: 1.49 },
+  { id: 5, title: 'Cucumber', img: fruit2, price: 0.99 },
+  { id: 6, title: 'Lettuce', img: fruit3, price: 2.29 },
+  { id: 7, title: 'Carrot', img: fruit1, price: 1.79 },
+  { id: 8, title: 'Bell Pepper', img: fruit2, price: 2.99 },
 ];
 
 const Fructs = () => {

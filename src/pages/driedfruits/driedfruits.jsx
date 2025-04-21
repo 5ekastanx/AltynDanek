@@ -17,7 +17,7 @@ const DryFruits = () => {
       name: 'Узбекские сушеные абрикосы',
       description: 'Натуральные сушеные абрикосы из Узбекистана, богатые витаминами и минералами.',
       benefits: 'Богаты калием, железом и бета-каротином. Улучшают пищеварение и укрепляют иммунитет.',
-      price: '450 '
+      price: '499'
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const DryFruits = () => {
       name: 'Органические сушеные абрикосы',
       description: 'Экологически чистые абрикосы, высушенные по традиционной технологии.',
       benefits: 'Не содержат химических добавок. Подходят для детского питания.',
-      price: '600 '
+      price: '529'
     },
     {
       id: 3,
@@ -33,7 +33,7 @@ const DryFruits = () => {
       name: 'Турецкие сушеные абрикосы',
       description: 'Крупные мясистые сушеные абрикосы из Турции с естественной сладостью.',
       benefits: 'Источник клетчатки и антиоксидантов. Помогают при анемии.',
-      price: '480 '
+      price: '359'
     },
     {
       id: 4,
@@ -41,30 +41,66 @@ const DryFruits = () => {
       name: 'Армянские курага',
       description: 'Курага высшего сорта из солнечной Армении, без добавления сахара и консервантов.',
       benefits: 'Содержит витамины A, C, E. Полезна для сердца и зрения.',
-      price: '520 '
+      price: '329'
     },
     {
-      id: 3,
+      id: 5,
       image: apricots4,
       name: 'Турецкие сушеные абрикосы',
       description: 'Крупные мясистые сушеные абрикосы из Турции с естественной сладостью.',
       benefits: 'Источник клетчатки и антиоксидантов. Помогают при анемии.',
-      price: '480 '
+      price: '299'
     },
   ];
+  const [quantities, setQuantities] = useState({});
+    const dispatch = useDispatch();
 
-    const [quantities, setQuantities] = useState({});
-      const dispatch = useDispatch();
-    
-      const handleAddToCart = (fruit) => {
-        dispatch(addItem({
-          id: fruit.id,
-          name: fruit.name,
-          price: fruit.price,
-          quantity: quantities[fruit.id] || 1,
-          image: fruit.image
-        }));
-      };
+  const increase = (id) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1,
+    }));
+  };
+
+  const decrease = (id) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: Math.max((prev[id] || 1) - 1, 1),
+    }));
+  };
+
+  const handleInputChange = (e, id) => {
+    const value = parseInt(e.target.value);
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: isNaN(value) || value <= 0 ? 1 : value,
+    }));
+  };
+
+  const handleUnitChange = (id, unit) => {
+    setUnits(prev => ({
+      ...prev,
+      [id]: unit
+    }));
+  };
+
+  const handleAddToCart = (fruit) => {
+    const quantityInKg = units[fruit.id] === 'кг' ? quantities[fruit.id] : quantities[fruit.id] / 1000;
+    dispatch(addItem({
+      id: fruit.id,
+      name: fruit.name,
+      price: fruit.price,
+      quantity: quantityInKg,
+      image: fruit.image,
+      unit: units[fruit.id]
+    }));
+  };
+
+
+  const [units, setUnits] = useState(driedFruits.reduce((acc, fruit) => {
+    acc[fruit.id] = 'кг';
+    return acc;
+  }, {}));
 
   return (
     <div className="dry-fruits-page">
@@ -111,8 +147,47 @@ const DryFruits = () => {
                 <div className="product-benefits">
                   <strong>Польза:</strong> {fruit.benefits}
                 </div>
-                <div className="product-price">{fruit.price}руб/кг</div>
-                <button onClick={() => handleAddToCart(fruit)} className="add-to-cart">В корзину</button>
+                <div className="product-price">{fruit.price} сом/{units[fruit.id]}</div>
+                
+                <div className="quantity-controls">
+                  <button 
+                    onClick={() => decrease(fruit.id, quantities[fruit.id] - 0.1)}
+                    className="quantity-btn"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                        value={quantities[fruit.id] || 1}
+                    onChange={(e) => handleInputChange(fruit.id, parseFloat(e.target.value))}
+                    className="quantity-input"
+                  />
+                  <button 
+                    onClick={() => increase(fruit.id, quantities[fruit.id] + 0.1)}
+                    className="quantity-btn"
+                  >
+                    +
+                  </button>
+                  
+                  <select
+                    value={units[fruit.id]}
+                    onChange={(e) => handleUnitChange(fruit.id, e.target.value)}
+                    className="unit-select"
+                  >
+                    <option value="кг">кг</option>
+                    <option value="г">г</option>
+                  </select>
+                </div>
+                
+                <button 
+                  onClick={() => handleAddToCart(fruit)} 
+                  className="add-to-cart"
+                >
+                  В корзину
+                </button>
+                
               </div>
             </div>
           ))}
@@ -120,41 +195,41 @@ const DryFruits = () => {
       </section>
 
       <section className="kyrgyz-dried-fruits">
-  <div className="container">
-    <div className="kyrgyz-content">
-      <div className="kyrgyz-text">
-        <h2>Кыргызстандын кургатылган жемиштери</h2>
-        <div className="kyrgyz-features">
-          <div className="feature-item">
-            <div className="feature-icon">🌞</div>
-            <p>Табигый күн аркылуу кургатылган, химиясыз</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon">💪</div>
-            <p>Витаминге бай, косточкасы да пайдалуу</p>
-          </div>
-          <div className="feature-item">
-            <div className="feature-icon">🏪</div>
-            <p>Ар бир дүкөндөн таба аласыз</p>
+        <div className="container">
+          <div className="kyrgyz-content">
+            <div className="kyrgyz-text">
+              <h2>Кыргызстандын кургатылган жемиштери</h2>
+              <div className="kyrgyz-features">
+                <div className="feature-item">
+                  <div className="feature-icon">🌞</div>
+                  <p>Табигый күн аркылуу кургатылган, химиясыз</p>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon">💪</div>
+                  <p>Витаминге бай, косточкасы да пайдалуу</p>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon">🏪</div>
+                  <p>Ар бир дүкөндөн таба аласыз</p>
+                </div>
+              </div>
+              <p className="kyrgyz-description">
+                Кыргызстандын кургатылган өрүк, кайнатылган косточкасы менен дагы пайдалуу. 
+                Косточкасын да жесеңиз болот, анда В17 витамини бар. Бул элдик дарылоо ыкмасы.
+              </p>
+            </div>
+            <div className="kyrgyz-image">
+              <img 
+                src={home3}
+                alt="Кыргызстандын кургатылган жемиштери" 
+              />
+              <div className="image-label">
+                <span>Улуттук тамак-аш</span>
+              </div>
+            </div>
           </div>
         </div>
-        <p className="kyrgyz-description">
-          Кыргызстандын кургатылган өрүк, кайнатылган косточкасы менен дагы пайдалуу. 
-          Косточкасын да жесеңиз болот, анда В17 витамини бар. Бул элдик дарылоо ыкмасы.
-        </p>
-      </div>
-      <div className="kyrgyz-image">
-        <img 
-          src={home3}
-          alt="Кыргызстандын кургатылган жемиштери" 
-        />
-        <div className="image-label">
-          <span>Улуттук тамак-аш</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
     </div>
   );
 };

@@ -156,7 +156,6 @@ const Vegetables = () => {
             <select className="unit_selector2">
               <option>kg</option>
               <option>g</option>
-              <option>lb</option>
             </select>
           </div>
           <button onClick={() => handleAddToCart(item)} className="add_btn2">
