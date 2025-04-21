@@ -3,6 +3,7 @@ import header_shop from '../../Accests/headershop.png';
 import home1 from '../../Accests/home1.jpg';
 import home2 from '../../Accests/home2.jpg';
 import home3 from '../../Accests/home3.jpg';
+import home4 from '../../Accests/home4.jpeg';
 import imagecard from '../../Accests/imagecard.png';
 import imagecard1 from '../../Accests/imagecard1.png';
 import imagecard2 from '../../Accests/imagecard2.png';
@@ -135,7 +136,7 @@ const Home = () => {
       <div className="header_images">
         <div className="main_image">
           <img 
-            src={header_shop} 
+            src={home3} 
             alt="Фрукты, овощи и сухофрукты" 
             className="fade-in"
           />
@@ -151,7 +152,7 @@ const Home = () => {
             <img src={home2} alt="Овощи" />
           </div>
           <div className="preview_item">
-            <img src={home3} alt="Сухофрукты" />
+            <img src={home4} alt="Сухофрукты" />
           </div>
         </div>
       </div>
