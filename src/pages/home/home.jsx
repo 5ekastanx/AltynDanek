@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import header_shop from '../../Accests/headershop.png';
 import home1 from '../../Accests/home1.jpg';
 import home2 from '../../Accests/home2.jpg';
 import home3 from '../../Accests/home3.jpg';
 import home4 from '../../Accests/home4.jpeg';
+import home5 from '../../Accests/home5.png';
 import imagecard from '../../Accests/imagecard.png';
+import fruit3 from '../../Accests/fruit3.png';
 import imagecard1 from '../../Accests/imagecard1.png';
 import imagecard2 from '../../Accests/imagecard2.png';
 import { useDispatch } from 'react-redux';
@@ -13,9 +14,9 @@ import './home.css';
 
 const allSlides = [
   [
-    { id: 1, price: 1.29, title: 'Tomato', img: imagecard1 },
-    { id: 2, price: 2.49, title: 'Fennel', img: imagecard },
-    { id: 3, price: 3.29, title: 'Spring Onion', img: imagecard2 },
+    { id: 1, price: 1.29, title: 'Fennel', img: fruit3 },
+    { id: 2, price: 2.49, title: 'Dry Apricots', img: home3 },
+    { id: 3, price: 3.29, title: 'Dry Apricots', img: home5 },
     { id: 4, price: 1.99, title: 'Tomato', img: imagecard1 },
     { id: 5, price: 4.39, title: 'Fennel', img: imagecard },
     { id: 6, price: 2.20, title: 'Spring Onion', img: imagecard2 },

@@ -65,7 +65,7 @@ const Basket = () => {
       
       // ID вашего Telegram бота и чата
       const botToken = '7261885668:AAHPeGrXqpUUDx6RSYwVV_1C1wVunEJnyJs';
-      const chatId = '6064303468';
+      const chatId = '5877983293';
       
       // Отправляем сообщение в Telegram
       const response = await fetch(
